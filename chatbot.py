@@ -66,7 +66,6 @@ def find_best_line(text, file):
 def add_to_csv(text):
     with open('responses.csv', 'a', newline='') as csvfile:
             writer = csv.writer(csvfile, delimiter=';')
-            print(text)
             writer.writerow(text)
 
 

@@ -16,7 +16,7 @@ def run_chatbot():
     text_box_clicked = False
     response = "Hello. How may I help you today?"
     spoke = False
-    mac = True
+    mac = False
 
     while running:
 
@@ -172,11 +172,11 @@ def train():
         start_y_bot_offset = 40
         instruction_arr = format_text(instructions)
 
-        start_y = 5
+        start_y_bot_offset = 40
         for line in instruction_arr:
             text_surface_bot = base_font.render(line, True, colors["fire brick"]) 
             # render at position stated in arguments 
-            screen.blit(text_surface_bot, (25, 20+40))
+            screen.blit(text_surface_bot, (25, 20+start_y_bot_offset))
             start_y_bot_offset += 18 
 
 
