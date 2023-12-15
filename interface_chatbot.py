@@ -98,7 +98,8 @@ def run_chatbot():
 #def q_and_a_mode():
 
 def train():
-    
+    mac = False
+
     screen = pygame.display.set_mode([500, 500])
     running = True
 
