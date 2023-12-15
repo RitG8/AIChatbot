@@ -140,7 +140,7 @@ def train():
                                 question_entered = True
                         
                         if question_entered:
-                            instructions = "Enter answer, or -1 to ask a new question."
+                            instructions = "Enter answer, or -1 to save your answers and ask a new question."
                         else:
                             instructions = "Enter a question."
                         user_text = ""
@@ -171,10 +171,14 @@ def train():
             start_y += 18 
 
         start_y_bot_offset = 40
-        text_surface_bot = base_font.render(instructions, True, colors["fire brick"]) 
-        # render at position stated in arguments 
-        screen.blit(text_surface_bot, (25, 20+40))
-        start_y_bot_offset += 18 
+        instruction_arr = format_text(instructions)
+
+        start_y = 5
+        for line in instruction_arr:
+            text_surface_bot = base_font.render(line, True, colors["fire brick"]) 
+            # render at position stated in arguments 
+            screen.blit(text_surface_bot, (25, 20+40))
+            start_y_bot_offset += 18 
 
 
         pygame.display.flip()
