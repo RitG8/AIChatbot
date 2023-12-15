@@ -16,7 +16,7 @@ def run_chatbot():
     text_box_clicked = False
     response = "Hello. How may I help you today?"
     spoke = False
-    time = 0
+    mac = True
 
     while running:
 
@@ -41,7 +41,6 @@ def run_chatbot():
                         response = chatbot.response(user_text)
                         user_text = ""
                         spoke = True
-                        time = 0
                     else: 
                         user_text += event.unicode
             
@@ -81,7 +80,7 @@ def run_chatbot():
             screen.blit(text_surface_bot, (25, 20+start_y_bot_offset))
             start_y_bot_offset += 18 
 
-        if spoke and time + pygame.time.get_ticks() == 2000:
+        if spoke and mac:
             out = "say "
             for char in response:
                 if char.isalpha() or char.isspace():
@@ -98,7 +97,6 @@ def run_chatbot():
 #def q_and_a_mode():
 
 def train():
-    mac = False
 
     screen = pygame.display.set_mode([500, 500])
     running = True
@@ -199,7 +197,6 @@ def format_text(text):
             res += [string + " "]
     
     return res
-    
 
 run_chatbot()
 
