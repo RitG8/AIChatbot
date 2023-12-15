@@ -213,15 +213,3 @@ def format_text(text):
     return res
 
 run_chatbot()
-
-
-
-  
-  
-
-  
-
-
-  
-    
-      

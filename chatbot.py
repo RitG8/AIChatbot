@@ -5,6 +5,10 @@ def response(text):
 
     if text.find("Northeastern") >= 0:
         return "I noticed you mentioned Northeastern. I graduated from there in 1990!"
+    if text.find("raised to") >= 0 or text.find("plus") >= 0 or text.find("minus") >= 0 or text.find("times") >= 0 or text.find("divided by") >= 0:
+        return str(string_to_math(text))
+    if text.find("^") >= 0 or text.find("+") >= 0 or text.find("-") >= 0 or text.find("*") >= 0 or text.find("/") >= 0:
+        return str(string_to_math(text))
     
     file = read_csv("responses.csv")
     text = words_in_text(text)
@@ -81,4 +85,61 @@ def pig_latin_word(word):
     else:
         return word[1:] + word[0] + "ay"
 
+def string_to_math(str):
+    num_list = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve"]
+    operations = ["plus", "minus", "times", "divided by", "raised to"]
+    operations2 = ["+", "-", "*", "/", "**"]
+    #split all
+    #then if the length is four join the middle two to get the operation
+    str = str.rstrip("?.!")
+    str = str.split(" ")
+
+    str_split = []
+    for i in range(len(str)):
+        if str[i] == "raised" and str[i+1] == "to":
+            str_split += ["raised to"]
+        if str[i] in num_list or str[i] in operations:
+            str_split += [str[i]]
+        if str[i].isnumeric():
+            str_split += [str[i]]
+        if str[i] == "^":
+            str_split += ["raised", "to"]
+        if str[i] in operations2:
+            index = operations2.index(str[i])
+            str_split += [operations[index]]
+
+    operation = ""
+    num1 = 0
+    num2 = 0
+    if (len(str_split) == 4):
+        operation = str_split[1] + " " + str_split[2]
+        num1 = str_split[0]
+        num2 = str_split[3]
+    else:
+        operation = str_split[1]
+        num1 = str_split[0]
+        num2 = str_split[2]
+        if not num1.isnumeric():
+            num1 = num_list.index(num1)
+        if not num2.isnumeric():
+            num2 = num_list.index(num2)
+    
+    num1 = int(num1)
+    num2 = int(num2)
+
+    if operation == operations[0]:
+        return num1 + num2
+    elif operation == operations[1]:
+        return num1 - num2
+    elif operation == operations[2]:
+        return num1 * num2
+    elif operation == operations[3]:
+        if (num2 != 0):
+            return num1 / num2
+        else:
+            return "Cannot divide by 0"
+    elif operation == operations[4]:
+        return num1 ** num2
+    else:
+        return "Operation not supported"
 
