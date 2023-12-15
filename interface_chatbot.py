@@ -4,7 +4,7 @@ import os
 
 pygame.init()
 colors = {"fire engine red": "#db162f", "space cadet":"#1F2041", "english violet":"#4B3F72", "bright pink":"#FB6376", "melon":"#FCB1A6", "pale dogwood":"#FFDCCC",
-          "viridian":"#53917E", "fire brick": "#AD2E24", "castleton green": "#226752"}
+          "viridian":"#53917E", "fire brick": "#AD2E24", "castleton green": "#226752", "african violet": "#9C89B8"}
 
 
 def run_chatbot():
@@ -17,6 +17,7 @@ def run_chatbot():
     response = "Hello. How may I help you today?"
     spoke = False
     mac = False
+    pig_latin = False
 
     while running:
 
@@ -29,6 +30,8 @@ def run_chatbot():
                     text_box_clicked = True
                 elif train_box.collidepoint(event.pos):
                     train()
+                elif pig_latin_box.collidepoint(event.pos):
+                    pig_latin = not pig_latin
                 else: 
                     text_box_clicked = False
     
@@ -39,6 +42,8 @@ def run_chatbot():
                         user_text = user_text[:-1] 
                     elif event.key == pygame.K_RETURN:
                         response = chatbot.response(user_text)
+                        if pig_latin:
+                            response = chatbot.pig_latin(response)
                         user_text = ""
                         spoke = True
                     else: 
@@ -88,6 +93,15 @@ def run_chatbot():
             os.system(out)
             spoke = False
         
+        pig_latin_box = pygame.Rect(200, 10, 172, 30)
+        if pig_latin:
+            pygame.draw.rect(screen, colors["african violet"], pig_latin_box)
+            text_train = base_font.render("Pig Latin Mode!", True, colors["castleton green"]) 
+        else:
+            pygame.draw.rect(screen, colors["english violet"], pig_latin_box)
+            text_train = base_font.render("Pig Latin Mode!", True, colors["castleton green"]) 
+
+        screen.blit(text_train, (pig_latin_box.x+5, pig_latin_box.y + 5))
     
         pygame.display.flip()
 

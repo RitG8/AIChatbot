@@ -68,4 +68,17 @@ def add_to_csv(text):
             writer = csv.writer(csvfile, delimiter=';')
             writer.writerow(text)
 
+def pig_latin(sentence):
+    sentence_list = sentence.split(" ")
+    sentence_list = [pig_latin_word(word) for word in sentence_list]
+    return " ".join(sentence_list)
+
+def pig_latin_word(word):
+    word = word.lower()
+    vowels = ["a", "e", "i", "o", "u"]
+    if word[0] in vowels:
+        return word + "ay"
+    else:
+        return word[1:] + word[0] + "ay"
+
 
