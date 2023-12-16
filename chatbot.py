@@ -167,7 +167,7 @@ def string_to_math(str):
 async def joke():
     j = await Jokes()  # Initialise the class
     bl = ['nsfw', 'racist','religious','political','sexist']
-    cat = ["Misc", "Programming", "Spooky", "Pun", "Christmas"]
+    cat = ["Programming", "Spooky", "Pun", "Christmas"]
     joke = await j.get_joke(category = cat, blacklist = bl)  # Retrieve a random joke
     if joke["type"] == "single": # Print the joke
         return joke["joke"]
