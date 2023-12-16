@@ -11,7 +11,7 @@ def response(text):
         return str(string_to_math(text))
     if text.find("^") >= 0 or text.find("+") >= 0 or text.find("-") >= 0 or text.find("*") >= 0 or text.find("/") >= 0:
         return str(string_to_math(text))
-    if text.find("joke") >= 0:
+    if text.find("joke") >= 0 or text.find("Joke") >= 0:
         return asyncio.run(joke())
     
     file = read_csv("responses.csv")

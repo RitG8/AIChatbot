@@ -1,7 +1,8 @@
 ## ReadMe ##
 
 ### To run: ###
-- Install pygame
+- Run `pip3 install pygame`
+- Run `pip3 install jokeapi`
 - Run interface_chatbot.py
 - If you have a Macbook, change line 19 in `interface_chatbot.py` to be `mac = True` and turn your volume up!
 
@@ -13,6 +14,7 @@ Have a conversation! Some things you can ask:
 - What is 5 ^ 5?
 - What is ten plus ten?
 - What is the weather?
+- Tell me a joke
 - Click the pig latin button for every response to be in pig latin!
 - Entered a question but didn't like the response? Give the chatbot some training data!
 
