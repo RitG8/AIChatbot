@@ -50,7 +50,7 @@ def words_in_text(text):
     #removes common words
     return set(text)
 
-#scan thru each line excluding the header
+#scan through each line excluding the header
 #format the string accordingly
 #then keep track of the line number that had the most intersections
 #takes in a formatted text input and a formatted file input
@@ -93,11 +93,13 @@ def add_to_csv(text):
     #find best line. Take the text, find the words in it. then find the best line then
     #add all responses to the end of that line. 
 
+#makes a sentence into pig latin
 def pig_latin(sentence):
     sentence_list = sentence.split(" ")
     sentence_list = [pig_latin_word(word) for word in sentence_list]
     return " ".join(sentence_list)
 
+#makes a word into pig latin
 def pig_latin_word(word):
     word = word.lower()
     vowels = ["a", "e", "i", "o", "u"]
@@ -106,6 +108,7 @@ def pig_latin_word(word):
     else:
         return word[1:] + word[0] + "ay"
 
+#returns a numerical answer to a mathematical string input
 def string_to_math(str):
     num_list = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve"]
     operations = ["plus", "minus", "times", "divided by", "raised to"]
@@ -164,6 +167,7 @@ def string_to_math(str):
     else:
         return "Operation not supported"
 
+#returns a joke from the joke API
 async def joke():
     j = await Jokes()  # Initialise the class
     bl = ['nsfw', 'racist','religious','political','sexist']
