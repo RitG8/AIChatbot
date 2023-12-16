@@ -108,8 +108,6 @@ def run_chatbot():
     pygame.display.quit()
     pygame.quit()
 
-#def q_and_a_mode():
-
 def train():
 
     screen = pygame.display.set_mode([500, 500])

@@ -1,5 +1,7 @@
 import random
 import csv
+from jokeapi import Jokes # Import the Jokes class
+import asyncio
 
 def response(text):
 
@@ -9,6 +11,8 @@ def response(text):
         return str(string_to_math(text))
     if text.find("^") >= 0 or text.find("+") >= 0 or text.find("-") >= 0 or text.find("*") >= 0 or text.find("/") >= 0:
         return str(string_to_math(text))
+    if text.find("joke") >= 0:
+        return asyncio.run(joke())
     
     file = read_csv("responses.csv")
     text = words_in_text(text)
@@ -160,3 +164,12 @@ def string_to_math(str):
     else:
         return "Operation not supported"
 
+async def joke():
+    j = await Jokes()  # Initialise the class
+    bl = ['nsfw', 'racist','religious','political','sexist']
+    cat = ["Misc", "Programming", "Spooky", "Pun", "Christmas"]
+    joke = await j.get_joke(category = cat, blacklist = bl)  # Retrieve a random joke
+    if joke["type"] == "single": # Print the joke
+        return joke["joke"]
+    else:
+        return joke["setup"] + " " + joke["delivery"]
