@@ -1,4 +1,4 @@
-question;response;
+question;response
 Hi, how are you?;I am doing fine, how are you?;Not bad. How about you?;I've been better, how about you?
 What is the weather like?;The weather is cold.;The weather is warm.;The weather is snowy;Its a bit snowy outside, but it is ok
 What is your favorite color?;My favorite color is red.;I don't have a favorite color, how about you?
@@ -8,5 +8,5 @@ Why do you exist?;Because of a Computing Fundamentals project.
 Do you have any pets?;I do not, unfortunately.;I would love a goldfish. Do you have pets?;If I had a dog, I would be very happy.;My friend has a tarantula, and I decided I prefer being alone.
 What is your favorite song?;Can You Hear The Music;No Time For Caution
 I do not feel good.;I am sorry to hear that! How can I help?;I hope you feel better soon!
-What are your interests?;Reading;Playing music
+What are your interests?;Reading;Playing music;Cooking.;Biking.;Coding.
 Do you like fruits or vegetables?;Fruits. They are delicious.;Vegetables. They are healthy.

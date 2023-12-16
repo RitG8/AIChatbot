@@ -68,9 +68,25 @@ def find_best_line(text, file):
 
 #takes in an array of user text where the first thing is a question and rest are answers
 def add_to_csv(text):
-    with open('responses.csv', 'a', newline='') as csvfile:
+    file = read_csv("responses.csv")
+    question = words_in_text(text[0])
+    line_num = find_best_line(question, file)
+
+    if line_num == -1:
+        with open('responses.csv', 'a', newline='') as csvfile:
+                writer = csv.writer(csvfile, delimiter=';')
+                writer.writerow(text)
+    else:
+        file[line_num] += text[1:]
+        print(file)
+        with open("responses.csv", "w") as csvfile:
             writer = csv.writer(csvfile, delimiter=';')
-            writer.writerow(text)
+            for l in file:
+                writer.writerow(l)
+
+
+    #find best line. Take the text, find the words in it. then find the best line then
+    #add all responses to the end of that line. 
 
 def pig_latin(sentence):
     sentence_list = sentence.split(" ")
