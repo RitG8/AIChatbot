@@ -51,7 +51,7 @@ def words_in_text(text):
 #then keep track of the line number that had the most intersections
 #takes in a formatted text input and a formatted file input
 #returns the line number of the file that best matches the input text.
-def find_best_line(text, file):
+def find_best_line(text, file, num_common = 0):
     line_num = -1
     max_num = 0
 
@@ -60,7 +60,7 @@ def find_best_line(text, file):
         question = words_in_text(question)
         num_intersect = len(text & question)
 
-        if max_num < num_intersect:
+        if max_num < num_intersect and num_intersect >= num_common:
             line_num = i
             max_num = num_intersect
     
@@ -70,7 +70,10 @@ def find_best_line(text, file):
 def add_to_csv(text):
     file = read_csv("responses.csv")
     question = words_in_text(text[0])
-    line_num = find_best_line(question, file)
+    line_num = find_best_line(question, file, len(question) - 2)
+    #len(question) - 3 is an arbitrary framework that sees whether 
+    #the number of words in common is at least 3 less than the total length of the question
+    #this hopefully avoids different questions being grouped together
 
     if line_num == -1:
         with open('responses.csv', 'a', newline='') as csvfile:
@@ -78,12 +81,10 @@ def add_to_csv(text):
                 writer.writerow(text)
     else:
         file[line_num] += text[1:]
-        print(file)
         with open("responses.csv", "w") as csvfile:
             writer = csv.writer(csvfile, delimiter=';')
             for l in file:
                 writer.writerow(l)
-
 
     #find best line. Take the text, find the words in it. then find the best line then
     #add all responses to the end of that line. 
