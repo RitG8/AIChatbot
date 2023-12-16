@@ -14,7 +14,7 @@ Have a conversation! Some things you can ask:
 - What is 5 ^ 5?
 - What is ten plus ten?
 - What is the weather?
-- Tell me a joke
+- Tell me a joke!
 - Click the pig latin button for every response to be in pig latin!
 - Entered a question but didn't like the response? Give the chatbot some training data!
 
